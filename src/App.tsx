@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, LayoutDashboard, Package, FileText, ShoppingCart, Settings } from 'lucide-react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { PortalLayout } from './components/layouts/PortalLayout';
@@ -16,8 +17,9 @@ import { AdminDashboard } from './pages/admin/AdminDashboard';
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
+    <LanguageProvider>
+      <BrowserRouter>
+        <AuthProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -242,6 +244,7 @@ function App() {
         </Routes>
       </AuthProvider>
     </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

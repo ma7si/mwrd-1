@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, ShoppingCart, LayoutDashboard } from 'lucide-react';
+import { ShieldCheck, ShoppingCart, LayoutDashboard, Package, CheckCircle, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
@@ -84,10 +84,10 @@ export function Landing() {
               <div className="border-b border-gray-200">
                 <div className="flex justify-center gap-8">
                   <a className="flex flex-col items-center justify-center border-b-[3px] border-b-[#0A2540] text-[#0A2540] pb-[13px] pt-4" href="#clients">
-                    <p className="text-base font-bold leading-normal tracking-[0.015em]">{t('landing.features.title')}</p>
+                    <p className="text-base font-bold leading-normal tracking-[0.015em]">For Clients</p>
                   </a>
                   <a className="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#6b7280] pb-[13px] pt-4 hover:text-[#0A2540]" href="#suppliers">
-                    <p className="text-base font-bold leading-normal tracking-[0.015em]">{t('landing.features.suppliers')}</p>
+                    <p className="text-base font-bold leading-normal tracking-[0.015em]">For Suppliers</p>
                   </a>
                 </div>
               </div>
@@ -96,24 +96,24 @@ export function Landing() {
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
                   <ShieldCheck className="text-[#00C49A] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">{t('landing.features.vetted.title')}</h3>
-                    <p className="text-[#6b7280] text-sm font-normal leading-normal">{t('landing.features.vetted.desc')}</p>
+                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Access Vetted Suppliers</h3>
+                    <p className="text-[#6b7280] text-sm font-normal leading-normal">Connect with a curated network of trusted professionals and service providers, ensuring quality and reliability.</p>
                   </div>
                 </div>
 
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
                   <ShoppingCart className="text-[#00C49A] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">{t('landing.features.procurement.title')}</h3>
-                    <p className="text-[#6b7280] text-sm font-normal leading-normal">{t('landing.features.procurement.desc')}</p>
+                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Streamline Procurement</h3>
+                    <p className="text-[#6b7280] text-sm font-normal leading-normal">Simplify your purchasing process with our intuitive tools, from request to payment, all in one place.</p>
                   </div>
                 </div>
 
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
                   <LayoutDashboard className="text-[#00C49A] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">{t('landing.features.manage.title')}</h3>
-                    <p className="text-[#6b7280] text-sm font-normal leading-normal">{t('landing.features.manage.desc')}</p>
+                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Manage Projects Centrally</h3>
+                    <p className="text-[#6b7280] text-sm font-normal leading-normal">Oversee all your projects, communications, and milestones from a single, powerful dashboard.</p>
                   </div>
                 </div>
               </div>
@@ -125,27 +125,27 @@ export function Landing() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center gap-12">
               <div className="flex flex-col gap-3 max-w-2xl">
-                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">{t('landing.howItWorks.title')}</h2>
-                <p className="text-[#6b7280] text-base md:text-lg">{t('landing.howItWorks.subtitle')}</p>
+                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">How It Works</h2>
+                <p className="text-[#6b7280] text-base md:text-lg">A simple, transparent process to connect and get work done.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">1</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">{t('landing.howItWorks.step1.title')}</h3>
-                  <p className="text-[#6b7280] text-sm">{t('landing.howItWorks.step1.desc')}</p>
+                  <h3 className="text-[#0A2540] text-xl font-bold">Post or Find Opportunity</h3>
+                  <p className="text-[#6b7280] text-sm">Clients post project requirements. Suppliers browse and find opportunities that match their expertise.</p>
                 </div>
 
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">2</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">{t('landing.howItWorks.step2.title')}</h3>
-                  <p className="text-[#6b7280] text-sm">{t('landing.howItWorks.step2.desc')}</p>
+                  <h3 className="text-[#0A2540] text-xl font-bold">Connect & Collaborate</h3>
+                  <p className="text-[#6b7280] text-sm">Use our platform to communicate, negotiate terms, and manage project milestones seamlessly.</p>
                 </div>
 
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">3</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">{t('landing.howItWorks.step3.title')}</h3>
-                  <p className="text-[#6b7280] text-sm">{t('landing.howItWorks.step3.desc')}</p>
+                  <h3 className="text-[#0A2540] text-xl font-bold">Complete & Get Paid</h3>
+                  <p className="text-[#6b7280] text-sm">Once the work is complete and approved, payments are processed securely and swiftly through the platform.</p>
                 </div>
               </div>
             </div>
@@ -156,13 +156,13 @@ export function Landing() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center gap-12">
               <div className="flex flex-col gap-3 max-w-2xl">
-                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">{t('landing.testimonials.title')}</h2>
-                <p className="text-[#6b7280] text-base md:text-lg">{t('landing.testimonials.subtitle')}</p>
+                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">Trusted by Industry Leaders</h2>
+                <p className="text-[#6b7280] text-base md:text-lg">Hear what our partners have to say about their experience with mwrd.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
-                  <p className="text-[#4A4A4A]">{t('landing.testimonials.1')}</p>
+                  <p className="text-[#4A4A4A]">"mwrd revolutionized our procurement process. We found a high-quality supplier in days, not weeks. The platform is intuitive and saved us countless hours."</p>
                   <div className="flex items-center gap-4 mt-auto">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400"></div>
                     <div>
@@ -173,7 +173,7 @@ export function Landing() {
                 </div>
 
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
-                  <p className="text-[#4A4A4A]">{t('landing.testimonials.2')}</p>
+                  <p className="text-[#4A4A4A]">"As a supplier, finding quality leads used to be our biggest challenge. With mwrd, we get access to serious clients and can focus on what we do best."</p>
                   <div className="flex items-center gap-4 mt-auto">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-teal-400"></div>
                     <div>
@@ -184,7 +184,7 @@ export function Landing() {
                 </div>
 
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
-                  <p className="text-[#4A4A4A]">{t('landing.testimonials.3')}</p>
+                  <p className="text-[#4A4A4A]">"The centralized project management and secure payment system gives us peace of mind. It's the most professional B2B platform we've used."</p>
                   <div className="flex items-center gap-4 mt-auto">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-red-400"></div>
                     <div>
@@ -211,32 +211,32 @@ export function Landing() {
                 </div>
                 <h2 className="text-white text-xl font-bold">mwrd</h2>
               </div>
-              <p className="text-sm text-gray-300">{t('landing.footer.tagline')}</p>
+              <p className="text-sm text-gray-300">The premier managed marketplace for B2B connections.</p>
             </div>
 
             <div className="flex flex-col gap-4">
-              <h4 className="font-bold text-white">{t('landing.footer.platform')}</h4>
-              <a className="text-sm text-gray-300 hover:text-white" href="#clients">{t('nav.forClients')}</a>
-              <a className="text-sm text-gray-300 hover:text-white" href="#suppliers">{t('nav.forSuppliers')}</a>
-              <a className="text-sm text-gray-300 hover:text-white" href="#how-it-works">{t('nav.howItWorks')}</a>
+              <h4 className="font-bold text-white">Platform</h4>
+              <a className="text-sm text-gray-300 hover:text-white" href="#clients">For Clients</a>
+              <a className="text-sm text-gray-300 hover:text-white" href="#suppliers">For Suppliers</a>
+              <a className="text-sm text-gray-300 hover:text-white" href="#how-it-works">Pricing</a>
             </div>
 
             <div className="flex flex-col gap-4">
-              <h4 className="font-bold text-white">{t('landing.footer.company')}</h4>
-              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">{t('landing.footer.aboutUs')}</a>
-              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">{t('landing.footer.careers')}</a>
-              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">{t('landing.footer.contact')}</a>
+              <h4 className="font-bold text-white">Company</h4>
+              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">About Us</a>
+              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">Careers</a>
+              <a className="text-sm text-gray-300 hover:text-white" href="#testimonials">Contact</a>
             </div>
 
             <div className="flex flex-col gap-4">
-              <h4 className="font-bold text-white">{t('landing.footer.legal')}</h4>
-              <a className="text-sm text-gray-300 hover:text-white" href="#">{t('landing.footer.privacy')}</a>
-              <a className="text-sm text-gray-300 hover:text-white" href="#">{t('landing.footer.terms')}</a>
+              <h4 className="font-bold text-white">Legal</h4>
+              <a className="text-sm text-gray-300 hover:text-white" href="#">Privacy Policy</a>
+              <a className="text-sm text-gray-300 hover:text-white" href="#">Terms of Service</a>
             </div>
           </div>
 
           <div className="mt-12 border-t border-gray-100/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
-            <p>&copy; {new Date().getFullYear()} mwrd. {t('landing.footer.rights')}</p>
+            <p>&copy; {new Date().getFullYear()} mwrd. All rights reserved.</p>
           </div>
         </div>
       </footer>

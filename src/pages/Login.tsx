@@ -1,10 +1,13 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export function Login() {
   const navigate = useNavigate();
   const { signIn } = useAuth();
+  const { t, isRTL } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -26,7 +29,10 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#e5e7eb] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#e5e7eb] flex items-center justify-center p-4" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden flex">
         <div className="w-full lg:w-1/2 p-12 lg:p-16">
           <div className="max-w-md mx-auto">
@@ -40,8 +46,8 @@ export function Login() {
             </div>
 
             <div className="mb-10">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-              <p className="text-gray-500">Sign in to access your account</p>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">{t('login.title')}</h1>
+              <p className="text-gray-500">{t('login.subtitle')}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -54,7 +60,7 @@ export function Login() {
               <div>
                 <input
                   type="email"
-                  placeholder="Work Email"
+                  placeholder={t('login.email')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -66,7 +72,7 @@ export function Login() {
               <div className="relative">
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder={t('login.password')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -77,7 +83,7 @@ export function Login() {
                   type="button"
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-[#4A90E2] text-sm font-medium hover:text-[#357ABD]"
                 >
-                  Forgot Password?
+                  {t('login.forgotPassword')}
                 </button>
               </div>
 
@@ -86,15 +92,15 @@ export function Login() {
                 disabled={loading}
                 className="w-full py-3.5 bg-[#0A2540] text-white font-semibold rounded-lg hover:bg-[#0A2540]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Signing In...' : 'Sign In'}
+                {loading ? t('login.signingIn') : t('login.signIn')}
               </button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-gray-600 text-sm">
-                Don't have your account?{' '}
+                {t('login.noAccount')}{' '}
                 <Link to="/signup" className="text-[#4A90E2] hover:text-[#357ABD] font-medium">
-                  Sign Up
+                  {t('nav.signUp')}
                 </Link>
               </p>
             </div>
@@ -113,10 +119,10 @@ export function Login() {
 
           <div className="relative z-10 text-left max-w-md">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
-              Unlock Your B2B Potential.
+              {t('login.rightTitle')}
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Streamline procurement, manage supplier relationships, and drive growth in a secure, secure, unified marktplace. mwrd empowers your business with efficiency and control.
+              {t('login.rightDesc')}
             </p>
           </div>
 
