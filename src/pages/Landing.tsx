@@ -5,23 +5,23 @@ export function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#F6F9FC] font-['Inter',sans-serif]">
-      <header className="sticky top-0 z-50 bg-[#F6F9FC]/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-[#FAFAF9] font-['Inter',sans-serif]">
+      <header className="sticky top-0 z-50 bg-[#FAFAF9]/80 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between border-b border-gray-200 py-4">
             <div className="flex items-center gap-4">
-              <div className="w-6 h-6 text-[#0A2540]">
+              <div className="w-6 h-6 text-[#6366F1]">
                 <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                   <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
                 </svg>
               </div>
-              <h2 className="text-[#0A2540] text-xl font-bold leading-tight tracking-tight">mwrd</h2>
+              <h2 className="text-[#6366F1] text-xl font-bold leading-tight tracking-tight">mwrd</h2>
             </div>
             <nav className="hidden md:flex flex-1 justify-center items-center gap-8">
-              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#0A2540]" href="#clients">For Clients</a>
-              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#0A2540]" href="#suppliers">For Suppliers</a>
-              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#0A2540]" href="#how-it-works">How It Works</a>
-              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#0A2540]" href="#testimonials">About</a>
+              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#6366F1]" href="#clients">For Clients</a>
+              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#6366F1]" href="#suppliers">For Suppliers</a>
+              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#6366F1]" href="#how-it-works">How It Works</a>
+              <a className="text-[#4A4A4A] text-sm font-medium leading-normal hover:text-[#6366F1]" href="#testimonials">About</a>
             </nav>
             <div className="flex gap-2">
               <button
@@ -32,7 +32,7 @@ export function Landing() {
               </button>
               <button
                 onClick={() => navigate('/signup')}
-                className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0A2540] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#0A2540]/90 transition-colors"
+                className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#6366F1] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#6366F1]/90 transition-colors"
               >
                 <span className="truncate">Request a Demo</span>
               </button>
@@ -47,7 +47,7 @@ export function Landing() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col gap-8 text-center lg:text-left">
                 <div className="flex flex-col gap-4">
-                  <h1 className="text-[#0A2540] text-4xl font-black leading-tight tracking-tighter md:text-5xl lg:text-6xl">
+                  <h1 className="text-[#6366F1] text-4xl font-black leading-tight tracking-tighter md:text-5xl lg:text-6xl">
                     The Smarter B2B Marketplace, Managed for You
                   </h1>
                   <p className="text-[#6b7280] text-lg font-normal leading-normal md:text-xl">
@@ -57,7 +57,7 @@ export function Landing() {
                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                   <button
                     onClick={() => navigate('/signup?role=client')}
-                    className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#0A2540] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0A2540]/90 transition-colors"
+                    className="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#6366F1] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#6366F1]/90 transition-colors"
                   >
                     <span className="truncate">I'm a Client</span>
                   </button>
@@ -69,7 +69,7 @@ export function Landing() {
                   </button>
                 </div>
               </div>
-              <div className="w-full bg-center bg-no-repeat aspect-square md:aspect-video lg:aspect-square bg-cover rounded-xl" style={{ backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}></div>
+              <div className="w-full bg-center bg-no-repeat aspect-square md:aspect-video lg:aspect-square bg-cover rounded-xl" style={{ backgroundImage: 'linear-gradient(135deg, #6366F1 0%, #EC4899 100%)' }}></div>
             </div>
           </div>
         </section>
@@ -79,10 +79,10 @@ export function Landing() {
             <div className="flex flex-col gap-12">
               <div className="border-b border-gray-200">
                 <div className="flex justify-center gap-8">
-                  <a className="flex flex-col items-center justify-center border-b-[3px] border-b-[#0A2540] text-[#0A2540] pb-[13px] pt-4" href="#clients">
+                  <a className="flex flex-col items-center justify-center border-b-[3px] border-b-[#6366F1] text-[#6366F1] pb-[13px] pt-4" href="#clients">
                     <p className="text-base font-bold leading-normal tracking-[0.015em]">For Clients</p>
                   </a>
-                  <a className="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#6b7280] pb-[13px] pt-4 hover:text-[#0A2540]" href="#suppliers">
+                  <a className="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#6b7280] pb-[13px] pt-4 hover:text-[#6366F1]" href="#suppliers">
                     <p className="text-base font-bold leading-normal tracking-[0.015em]">For Suppliers</p>
                   </a>
                 </div>
@@ -90,25 +90,25 @@ export function Landing() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
-                  <ShieldCheck className="text-[#00C49A] w-8 h-8" />
+                  <ShieldCheck className="text-[#F97316] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Access Vetted Suppliers</h3>
+                    <h3 className="text-[#6366F1] text-lg font-bold leading-tight">Access Vetted Suppliers</h3>
                     <p className="text-[#6b7280] text-sm font-normal leading-normal">Connect with a curated network of trusted professionals and service providers, ensuring quality and reliability.</p>
                   </div>
                 </div>
 
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
-                  <ShoppingCart className="text-[#00C49A] w-8 h-8" />
+                  <ShoppingCart className="text-[#F97316] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Streamline Procurement</h3>
+                    <h3 className="text-[#6366F1] text-lg font-bold leading-tight">Streamline Procurement</h3>
                     <p className="text-[#6b7280] text-sm font-normal leading-normal">Simplify your purchasing process with our intuitive tools, from request to payment, all in one place.</p>
                   </div>
                 </div>
 
                 <div className="flex flex-1 gap-4 rounded-xl border border-gray-200 bg-transparent p-6 flex-col hover:shadow-lg transition-shadow">
-                  <LayoutDashboard className="text-[#00C49A] w-8 h-8" />
+                  <LayoutDashboard className="text-[#F97316] w-8 h-8" />
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-[#0A2540] text-lg font-bold leading-tight">Manage Projects Centrally</h3>
+                    <h3 className="text-[#6366F1] text-lg font-bold leading-tight">Manage Projects Centrally</h3>
                     <p className="text-[#6b7280] text-sm font-normal leading-normal">Oversee all your projects, communications, and milestones from a single, powerful dashboard.</p>
                   </div>
                 </div>
@@ -121,26 +121,26 @@ export function Landing() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center gap-12">
               <div className="flex flex-col gap-3 max-w-2xl">
-                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">How It Works</h2>
+                <h2 className="text-[#6366F1] text-3xl md:text-4xl font-bold leading-tight tracking-tight">How It Works</h2>
                 <p className="text-[#6b7280] text-base md:text-lg">A simple, transparent process to connect and get work done.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">1</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">Post or Find Opportunity</h3>
+                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F97316]/20 text-[#F97316] font-bold text-xl">1</div>
+                  <h3 className="text-[#6366F1] text-xl font-bold">Post or Find Opportunity</h3>
                   <p className="text-[#6b7280] text-sm">Clients post project requirements. Suppliers browse and find opportunities that match their expertise.</p>
                 </div>
 
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">2</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">Connect & Collaborate</h3>
+                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F97316]/20 text-[#F97316] font-bold text-xl">2</div>
+                  <h3 className="text-[#6366F1] text-xl font-bold">Connect & Collaborate</h3>
                   <p className="text-[#6b7280] text-sm">Use our platform to communicate, negotiate terms, and manage project milestones seamlessly.</p>
                 </div>
 
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#00C49A]/20 text-[#00C49A] font-bold text-xl">3</div>
-                  <h3 className="text-[#0A2540] text-xl font-bold">Complete & Get Paid</h3>
+                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F97316]/20 text-[#F97316] font-bold text-xl">3</div>
+                  <h3 className="text-[#6366F1] text-xl font-bold">Complete & Get Paid</h3>
                   <p className="text-[#6b7280] text-sm">Once the work is complete and approved, payments are processed securely and swiftly through the platform.</p>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export function Landing() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center gap-12">
               <div className="flex flex-col gap-3 max-w-2xl">
-                <h2 className="text-[#0A2540] text-3xl md:text-4xl font-bold leading-tight tracking-tight">Trusted by Industry Leaders</h2>
+                <h2 className="text-[#6366F1] text-3xl md:text-4xl font-bold leading-tight tracking-tight">Trusted by Industry Leaders</h2>
                 <p className="text-[#6b7280] text-base md:text-lg">Hear what our partners have to say about their experience with mwrd.</p>
               </div>
 
@@ -160,9 +160,9 @@ export function Landing() {
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
                   <p className="text-[#4A4A4A]">"mwrd revolutionized our procurement process. We found a high-quality supplier in days, not weeks. The platform is intuitive and saved us countless hours."</p>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400"></div>
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500"></div>
                     <div>
-                      <p className="font-bold text-[#0A2540]">Sarah Johnson</p>
+                      <p className="font-bold text-[#6366F1]">Sarah Johnson</p>
                       <p className="text-sm text-[#6b7280]">Operations Manager, Innovate Inc.</p>
                     </div>
                   </div>
@@ -171,9 +171,9 @@ export function Landing() {
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
                   <p className="text-[#4A4A4A]">"As a supplier, finding quality leads used to be our biggest challenge. With mwrd, we get access to serious clients and can focus on what we do best."</p>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-teal-400"></div>
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-pink-500"></div>
                     <div>
-                      <p className="font-bold text-[#0A2540]">Michael Chen</p>
+                      <p className="font-bold text-[#6366F1]">Michael Chen</p>
                       <p className="text-sm text-[#6b7280]">CEO, Precision Solutions</p>
                     </div>
                   </div>
@@ -182,9 +182,9 @@ export function Landing() {
                 <div className="flex flex-col gap-6 rounded-xl border border-gray-200 p-6 text-left hover:shadow-lg transition-shadow">
                   <p className="text-[#4A4A4A]">"The centralized project management and secure payment system gives us peace of mind. It's the most professional B2B platform we've used."</p>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-red-400"></div>
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400"></div>
                     <div>
-                      <p className="font-bold text-[#0A2540]">Emily Rodriguez</p>
+                      <p className="font-bold text-[#6366F1]">Emily Rodriguez</p>
                       <p className="text-sm text-[#6b7280]">Marketing Director, BuildFast Corp</p>
                     </div>
                   </div>
@@ -195,7 +195,7 @@ export function Landing() {
         </section>
       </main>
 
-      <footer className="bg-[#0A2540] text-white">
+      <footer className="bg-[#4338CA] text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-12">
             <div className="lg:col-span-2 flex flex-col gap-4">
