@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, LayoutDashboard, Package, FileText, ShoppingCart, Settings } from 'lucide-react';
+import { Home, LayoutDashboard, Package, FileText, ShoppingCart, Settings, Users } from 'lucide-react';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { PortalLayout } from './components/layouts/PortalLayout';
@@ -11,8 +11,16 @@ import { Unauthorized } from './pages/Unauthorized';
 import { Portal } from './pages/Portal';
 import { ClientDashboard } from './pages/client/ClientDashboard';
 import { ClientCatalog } from './pages/client/ClientCatalog';
+import { ClientRFQs } from './pages/client/ClientRFQs';
+import { ClientRFQDetail } from './pages/client/ClientRFQDetail';
+import { ClientOrders } from './pages/client/ClientOrders';
 import { SupplierDashboard } from './pages/supplier/SupplierDashboard';
+import { SupplierInventory } from './pages/supplier/SupplierInventory';
+import { SupplierRFQs } from './pages/supplier/SupplierRFQs';
+import { SupplierOrders } from './pages/supplier/SupplierOrders';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { AdminUsers } from './pages/admin/AdminUsers';
+import { AdminItems } from './pages/admin/AdminItems';
 
 function App() {
   return (
@@ -65,26 +73,9 @@ function App() {
                   <Routes>
                     <Route index element={<ClientDashboard />} />
                     <Route path="catalog" element={<ClientCatalog />} />
-                    <Route
-                      path="rfqs"
-                      element={
-                        <div className="text-center py-12">
-                          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">RFQ Management</h2>
-                          <p className="text-gray-600">RFQ list and details page coming soon</p>
-                        </div>
-                      }
-                    />
-                    <Route
-                      path="orders"
-                      element={
-                        <div className="text-center py-12">
-                          <ShoppingCart className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">Order History</h2>
-                          <p className="text-gray-600">Order tracking page coming soon</p>
-                        </div>
-                      }
-                    />
+                    <Route path="rfqs" element={<ClientRFQs />} />
+                    <Route path="rfqs/:rfqId" element={<ClientRFQDetail />} />
+                    <Route path="orders" element={<ClientOrders />} />
                   </Routes>
                 </PortalLayout>
               </ProtectedRoute>
@@ -121,36 +112,9 @@ function App() {
                 >
                   <Routes>
                     <Route index element={<SupplierDashboard />} />
-                    <Route
-                      path="items"
-                      element={
-                        <div className="text-center py-12">
-                          <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">Inventory Management</h2>
-                          <p className="text-gray-600">Item management page coming soon</p>
-                        </div>
-                      }
-                    />
-                    <Route
-                      path="rfqs"
-                      element={
-                        <div className="text-center py-12">
-                          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">RFQ Opportunities</h2>
-                          <p className="text-gray-600">RFQ listing page coming soon</p>
-                        </div>
-                      }
-                    />
-                    <Route
-                      path="orders"
-                      element={
-                        <div className="text-center py-12">
-                          <ShoppingCart className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">Order Fulfillment</h2>
-                          <p className="text-gray-600">Order management page coming soon</p>
-                        </div>
-                      }
-                    />
+                    <Route path="items" element={<SupplierInventory />} />
+                    <Route path="rfqs" element={<SupplierRFQs />} />
+                    <Route path="orders" element={<SupplierOrders />} />
                   </Routes>
                 </PortalLayout>
               </ProtectedRoute>
@@ -171,7 +135,7 @@ function App() {
                     {
                       name: 'Users',
                       path: '/portal/admin/users',
-                      icon: <Home className="w-5 h-5" />,
+                      icon: <Users className="w-5 h-5" />,
                     },
                     {
                       name: 'Items',
@@ -192,26 +156,8 @@ function App() {
                 >
                   <Routes>
                     <Route index element={<AdminDashboard />} />
-                    <Route
-                      path="users"
-                      element={
-                        <div className="text-center py-12">
-                          <Home className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">User Management</h2>
-                          <p className="text-gray-600">User approval and management page coming soon</p>
-                        </div>
-                      }
-                    />
-                    <Route
-                      path="items"
-                      element={
-                        <div className="text-center py-12">
-                          <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <h2 className="text-2xl font-bold text-gray-900 mb-2">Item Approval</h2>
-                          <p className="text-gray-600">Item review page coming soon</p>
-                        </div>
-                      }
-                    />
+                    <Route path="users" element={<AdminUsers />} />
+                    <Route path="items" element={<AdminItems />} />
                     <Route
                       path="rfqs"
                       element={
