@@ -1,18 +1,31 @@
 import { useEffect, useState } from 'react';
-import { Search, Filter, Package, ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Search, Filter, Package, ShoppingCart, X } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../contexts/AuthContext';
 import { Card, CardBody } from '../../components/ui/Card';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { Modal } from '../../components/ui/Modal';
 
 export function ClientCatalog() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [items, setItems] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState<Set<string>>(new Set());
+  const [showRFQModal, setShowRFQModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [rfqData, setRfqData] = useState({
+    title: '',
+    description: '',
+    deadline: ''
+  });
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
 
   useEffect(() => {
     loadData();
@@ -46,11 +59,82 @@ export function ClientCatalog() {
     const newCart = new Set(cart);
     if (newCart.has(itemId)) {
       newCart.delete(itemId);
+      // Remove quantity when item is removed
+      const newQuantities = { ...quantities };
+      delete newQuantities[itemId];
+      setQuantities(newQuantities);
     } else {
       newCart.add(itemId);
+      // Set default quantity to 1
+      setQuantities({ ...quantities, [itemId]: 1 });
     }
     setCart(newCart);
   };
+
+  async function submitRFQ() {
+    if (!user) return;
+    if (!rfqData.title.trim()) {
+      alert('Please enter an RFQ title');
+      return;
+    }
+    if (cart.size === 0) {
+      alert('Please add at least one item to the RFQ');
+      return;
+    }
+
+    // Validate quantities
+    for (const itemId of Array.from(cart)) {
+      if (!quantities[itemId] || quantities[itemId] <= 0) {
+        alert('Please enter valid quantities for all items');
+        return;
+      }
+    }
+
+    setSubmitting(true);
+    try {
+      // Create RFQ
+      const { data: rfq, error: rfqError } = await supabase
+        .from('rfqs')
+        .insert({
+          client_id: user.id,
+          title: rfqData.title,
+          description: rfqData.description || null,
+          deadline: rfqData.deadline || null,
+          status: 'open'
+        })
+        .select()
+        .single();
+
+      if (rfqError) throw rfqError;
+
+      // Create RFQ items
+      const rfqItems = Array.from(cart).map(itemId => ({
+        rfq_id: rfq.id,
+        item_id: itemId,
+        quantity: quantities[itemId]
+      }));
+
+      const { error: itemsError } = await supabase
+        .from('rfq_items')
+        .insert(rfqItems);
+
+      if (itemsError) throw itemsError;
+
+      // Reset state
+      setCart(new Set());
+      setQuantities({});
+      setRfqData({ title: '', description: '', deadline: '' });
+      setShowRFQModal(false);
+
+      // Navigate to RFQ detail
+      navigate(`/portal/client/rfqs/${rfq.id}`);
+    } catch (err: any) {
+      console.error('Error creating RFQ:', err);
+      alert('Failed to create RFQ: ' + err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   if (loading) {
     return (
@@ -68,7 +152,7 @@ export function ClientCatalog() {
           <p className="text-gray-600 mt-1">Browse approved items from verified suppliers</p>
         </div>
         {cart.size > 0 && (
-          <Button className="relative">
+          <Button className="relative" onClick={() => setShowRFQModal(true)}>
             <ShoppingCart className="w-5 h-5 mr-2" />
             Create RFQ ({cart.size})
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">
@@ -188,6 +272,110 @@ export function ClientCatalog() {
           )}
         </div>
       </div>
+
+      {/* RFQ Creation Modal */}
+      <Modal
+        isOpen={showRFQModal}
+        onClose={() => !submitting && setShowRFQModal(false)}
+        title="Create Request for Quotation"
+        size="lg"
+      >
+        <div className="space-y-6">
+          <div>
+            <Input
+              label="RFQ Title"
+              type="text"
+              placeholder="e.g., Office Supplies Q1 2024"
+              value={rfqData.title}
+              onChange={(e) => setRfqData({ ...rfqData, title: e.target.value })}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Description (Optional)
+            </label>
+            <textarea
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              rows={3}
+              placeholder="Any special requirements or notes..."
+              value={rfqData.description}
+              onChange={(e) => setRfqData({ ...rfqData, description: e.target.value })}
+            />
+          </div>
+
+          <div>
+            <Input
+              label="Deadline (Optional)"
+              type="date"
+              value={rfqData.deadline}
+              onChange={(e) => setRfqData({ ...rfqData, deadline: e.target.value })}
+            />
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">Items & Quantities</h3>
+            <div className="space-y-3 max-h-64 overflow-y-auto">
+              {Array.from(cart).map((itemId) => {
+                const item = items.find((i) => i.id === itemId);
+                if (!item) return null;
+                return (
+                  <div
+                    key={itemId}
+                    className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                  >
+                    <button
+                      onClick={() => toggleCart(itemId)}
+                      className="text-red-600 hover:text-red-700"
+                      type="button"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900">{item.name}</p>
+                      <p className="text-sm text-gray-500">Unit: {item.unit}</p>
+                    </div>
+                    <div className="w-32">
+                      <Input
+                        type="number"
+                        min="1"
+                        placeholder="Qty"
+                        value={quantities[itemId] || ''}
+                        onChange={(e) =>
+                          setQuantities({
+                            ...quantities,
+                            [itemId]: parseInt(e.target.value) || 0
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex gap-3 pt-4 border-t">
+            <Button
+              variant="secondary"
+              onClick={() => setShowRFQModal(false)}
+              disabled={submitting}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="primary"
+              onClick={submitRFQ}
+              disabled={submitting}
+              className="flex-1"
+            >
+              {submitting ? 'Creating...' : 'Create RFQ'}
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
